@@ -1,0 +1,300 @@
+{
+  "name": "Slack Individual Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        880
+      ],
+      "id": "d4d96043-dd25-4c1f-9d82-003a866f146c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f91ea83e-09d6-43b5-afd3-4d7716749bd3",
+              "name": "channelId",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "55c72e30-ba6e-456c-b9a4-a4837d65d48e",
+              "name": "maxMessages",
+              "value": "50",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -16,
+        880
+      ],
+      "id": "cc5cc8aa-fe29-4a43-abf6-248955d0442d",
+      "name": "Slack Credentials"
+    },
+    {
+      "parameters": {
+        "url": "=https://slack.com/api/conversations.history?channel={{ $json.channelId }}&limit={{ $json.maxMessages }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "slackApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer "
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        192,
+        880
+      ],
+      "id": "c731a92e-7edf-432f-99b2-26b20b5566ff",
+      "name": "Fetching of Recent Messages",
+      "credentials": {
+        "slackApi": {
+          "id": "",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const messages = $input.all()[0].json.messages;\nconst mostRecentMessage = messages[0];\n\nif (mostRecentMessage.files) {\n  return { attachment: mostRecentMessage.files };\n} else {\n  return {};\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        880
+      ],
+      "id": "215ea02b-2f05-45bd-ac78-f0718d03b24d",
+      "name": "Checking of Attachments in messages"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.attachment[0].url_private_download }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "slackApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer "
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        608,
+        880
+      ],
+      "id": "51cc6c00-44dd-488c-8aaf-842cb89b45c5",
+      "name": "Fetching of Files",
+      "credentials": {
+        "slackApi": {
+          "id": "",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyCppadu4Z_UgZ2ru1aY48nSBZt05_hMOBs",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googlePalmApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ \n  {\n    contents: [\n      {\n        role: \"user\",\n        parts: [\n          {\n            text: `Task: Inspect the following file text for leaked API keys/secrets. If any are found, return ONLY a strict JSON array of objects [{\\\"path\\\",\\\"match_type\\\",\\\"match_value\\\",\\\"confidence\\\"}]. If none, return []. Do not include any prose. Text:\\n\\n$json.data`\n          }\n        ]\n      }\n    ],\n    generationConfig: {\n      temperature: 0,\n      maxOutputTokens: 512\n    }\n  }\n}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        832,
+        880
+      ],
+      "id": "9db2cac5-ea85-439d-8518-90b099ad39c4",
+      "name": "Check of Files using Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini(PaLM) Api account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// items look like: { path, match_type, match_value, confidence }\nconst rows = items.map(i => i.json);\nconst total = rows.length;\n\nconst lines = rows.map((r, i) => {\n  const masked = typeof r.match_value === \"string\" && r.match_value.length > 10\n    ? `${r.match_value.slice(0,4)}••••${r.match_value.slice(-4)}`\n    : String(r.match_value);\n  return `• ${i+1}. ${r.path}: ${r.match_type} = ${masked} (conf=${r.confidence || \"n/a\"})`;\n}).join('\\n');\n\nconst body = `Secrets scan results\\n\\nTotal findings: ${total}\\n\\n${lines}`;\n\nreturn [{ json: { totalFindings: total, body } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        880
+      ],
+      "id": "e58721c3-9c82-4892-b1be-d934ace1c62a",
+      "name": "Creating Report for Data Leak"
+    },
+    {
+      "parameters": {
+        "sendTo": "bjyotibrat@gmail.com",
+        "subject": "=Slack Report on Data Leak (Slack secrets scan ({{ $json.totalFindings }}))",
+        "emailType": "text",
+        "message": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1376,
+        880
+      ],
+      "id": "66646358-12b2-4393-af20-2c8f61075d8b",
+      "name": "Sending Mail for Data Leak",
+      "webhookId": "a0f22071-cfbd-4137-9aaf-ae268dafc488",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "",
+          "name": "Gmail account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Slack Credentials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack Credentials": {
+      "main": [
+        [
+          {
+            "node": "Fetching of Recent Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetching of Recent Messages": {
+      "main": [
+        [
+          {
+            "node": "Checking of Attachments in messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Checking of Attachments in messages": {
+      "main": [
+        [
+          {
+            "node": "Fetching of Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetching of Files": {
+      "main": [
+        [
+          {
+            "node": "Check of Files using Gemini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check of Files using Gemini": {
+      "main": [
+        [
+          {
+            "node": "Creating Report for Data Leak",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Creating Report for Data Leak": {
+      "main": [
+        [
+          {
+            "node": "Sending Mail for Data Leak",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "968a0020-4629-4836-babe-1c44a2b1a110",
+  "meta": {
+    "instanceId": "5273cbb886bf63bf8ba29001a0919c8ecdc0a7ec7c25cb633ea456a3d9ae9fe9"
+  },
+  "id": "8YDU0wTMWVV23DkT",
+  "tags": []
+}

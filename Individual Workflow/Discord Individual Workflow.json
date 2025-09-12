@@ -1,0 +1,245 @@
+{
+  "name": "Discord Individual Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1584,
+        -64
+      ],
+      "id": "83609602-7229-40cd-a4b2-84bad3f54145",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"channelId\": \"1415686187875831903\",\n  \"maxMessages\": \"25\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1296,
+        -64
+      ],
+      "id": "80c759de-73fe-4bef-befd-ec5093c4398f",
+      "name": "Discord Credentials"
+    },
+    {
+      "parameters": {
+        "url": "=https://discord.com/api/v10/channels/{{ $json.channelId }}/messages?limit={{ $json.maxMessages }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "discordBotApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bot "
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1088,
+        -64
+      ],
+      "id": "271fab22-87aa-406f-980a-d28c7ee535d7",
+      "name": "Discord API Call",
+      "credentials": {
+        "discordBotApi": {
+          "id": "",
+          "name": "Discord Bot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const messages = $input.all().map((item) => item.json);\nconst recentMessage = messages.sort(\n  (a, b) => new Date(b.timestamp) - new Date(a.timestamp),\n)[0];\n\nreturn recentMessage?.attachments?.length ? [recentMessage] : [];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -880,
+        -64
+      ],
+      "id": "48d8a9b3-cfb5-4afb-86ec-d92fa11d0fea",
+      "name": "Fetching Recent Messages",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.attachments[0].url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "discordBotApi",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -672,
+        -64
+      ],
+      "id": "7b1f55ec-8a02-4585-a66e-59f555a15898",
+      "name": "Fetching Files from messages",
+      "credentials": {
+        "discordBotApi": {
+          "id": "",
+          "name": "Discord Bot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "document",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "text": "Is there any API Key in this document?",
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        -64
+      ],
+      "id": "90ede3af-f7ca-45b7-bbd8-c29036f3e839",
+      "name": "Analyze Discord Files",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini(PaLM) Api account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "bjyotibrat@gmail.com",
+        "subject": "Discord Report on Data Leak",
+        "message": "={{ $json.content.parts[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -208,
+        -64
+      ],
+      "id": "470c61ef-423e-4dc1-85a4-a087fbdb7e84",
+      "name": "Send the Report for Data Leak on Discord",
+      "webhookId": "acf1eb41-4876-4f3e-a14f-22eb22e3c8a6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "",
+          "name": "Gmail account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Discord Credentials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord Credentials": {
+      "main": [
+        [
+          {
+            "node": "Discord API Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord API Call": {
+      "main": [
+        [
+          {
+            "node": "Fetching Recent Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetching Recent Messages": {
+      "main": [
+        [
+          {
+            "node": "Fetching Files from messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetching Files from messages": {
+      "main": [
+        [
+          {
+            "node": "Analyze Discord Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Discord Files": {
+      "main": [
+        [
+          {
+            "node": "Send the Report for Data Leak on Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "539b3ffe-0638-4800-9f96-4d2936f6ffe3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5273cbb886bf63bf8ba29001a0919c8ecdc0a7ec7c25cb633ea456a3d9ae9fe9"
+  },
+  "id": "a6qM86tQxF7QfRve",
+  "tags": []
+}
