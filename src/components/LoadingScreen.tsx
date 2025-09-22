@@ -13,7 +13,7 @@ const LoadingScreen: React.FC = () => {
             <Shield className="w-8 h-8 text-white" />
           </div>
         </div>
-        <h1 className="text-4xl font-bold text-white mb-2">nEigent8</h1>
+        <h1 className="text-4xl font-bold text-white mb-2">nEigent</h1>
         <p className="text-blue-200 flex items-center justify-center gap-2">
           <Zap className="w-4 h-4" />
           Initializing AI DLP Agent...
