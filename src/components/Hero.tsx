@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              nEigent8
+              nEigent
             </h1>
             <p className="text-xl md:text-2xl text-blue-200 mb-8 leading-relaxed">
               AI DLP Agent for real-time secret leak prevention

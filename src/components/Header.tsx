@@ -52,7 +52,7 @@ const Header: React.FC = () => {
                 isScrolled ? 'text-gray-900' : 'text-white'
               }`}
             >
-              nEigent8
+              nEigent
             </span>
           </div>
 
