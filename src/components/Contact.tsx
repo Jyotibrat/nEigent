@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">Get in Touch</h2>
             <p className="text-xl text-gray-300">
-              Have questions about nEigent8? We'd love to hear from you.
+              Have questions about nEigent? We'd love to hear from you.
             </p>
           </div>
 

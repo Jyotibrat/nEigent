@@ -47,7 +47,7 @@ const Downloads: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">Download Resources</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Access workflow files, documentation, and visual assets for nEigent8
+            Access workflow files, documentation, and visual assets for nEigent
           </p>
         </div>
 

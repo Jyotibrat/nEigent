@@ -10,9 +10,9 @@ const Footer: React.FC = () => {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">n8</span>
+                <span className="text-white font-bold text-sm">n8n</span>
               </div>
-              <span className="text-xl font-bold">nEigent8</span>
+              <span className="text-xl font-bold">nEigent</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
               AI-powered Data Loss Prevention agent that monitors file uploads across multiple platforms 
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/Jyotibrat/nEigent8"
+                href="https://github.com/Jyotibrat/nEigent"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-200"
