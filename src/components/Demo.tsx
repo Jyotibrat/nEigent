@@ -7,7 +7,7 @@ const Demo: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">
-            See nEigent8 in Action
+            See nEigent in Action
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Watch how our AI DLP agent detects and prevents secret leaks across multiple platforms
@@ -19,7 +19,7 @@ const Demo: React.FC = () => {
             <div className="aspect-w-16 aspect-h-9">
               <iframe
                 src="https://www.youtube.com/embed/FOyjmtEQIdw"
-                title="nEigent8 Demo Video"
+                title="nEigent Demo Video"
                 className="w-full h-full aspect-video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -64,7 +64,7 @@ const Demo: React.FC = () => {
 
           <div className="text-center">
             <a
-              href="https://github.com/Jyotibrat/nEigent8"
+              href="https://github.com/Jyotibrat/nEigent"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg"

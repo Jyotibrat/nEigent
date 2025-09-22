@@ -4,7 +4,7 @@ import { Download, FileCode, FileText, Image, Shield } from 'lucide-react';
 const Downloads: React.FC = () => {
   const downloads = [
     {
-      name: 'nEigent8.json',
+      name: 'nEigent.json',
       description: 'Complete n8n workflow export ready for import',
       icon: FileCode,
       type: 'JSON',

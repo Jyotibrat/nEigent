@@ -70,7 +70,7 @@ const Header: React.FC = () => {
               </button>
             ))}
             <a
-              href="https://github.com/Jyotibrat/nEigent8"
+              href="https://github.com/Jyotibrat/nEigent"
               target="_blank"
               rel="noopener noreferrer"
               className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 ${
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
                 </button>
               ))}
               <a
-                href="https://github.com/Jyotibrat/nEigent8"
+                href="https://github.com/Jyotibrat/nEigent"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"

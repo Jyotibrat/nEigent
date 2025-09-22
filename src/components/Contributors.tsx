@@ -61,7 +61,7 @@ const Contributors: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">Meet the Team</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            The talented developers behind nEigent8's innovative security solution
+            The talented developers behind nEigent's innovative security solution
           </p>
         </div>
 
@@ -132,7 +132,7 @@ const Contributors: React.FC = () => {
 
         <div className="text-center mt-16">
           <a
-            href="https://github.com/Jyotibrat/nEigent8/graphs/contributors"
+            href="https://github.com/Jyotibrat/nEigent/graphs/contributors"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium"

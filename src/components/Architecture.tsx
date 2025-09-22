@@ -16,7 +16,7 @@ const Architecture: React.FC = () => {
           <div className="bg-gray-700 rounded-2xl p-8 shadow-xl border border-gray-600">
             <img
               src="/assets/System Arch.png"
-              alt="nEigent8 Architecture Diagram"
+              alt="nEigent Architecture Diagram"
               className="w-full h-auto max-h-[600px] object-contain rounded-xl mb-8"
               loading="lazy"
             />

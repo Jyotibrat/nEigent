@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-none"
-                    placeholder="Tell us about your interest in nEigent8..."
+                    placeholder="Tell us about your interest in nEigent..."
                   ></textarea>
                 </div>
 
@@ -137,7 +137,7 @@ const Contact: React.FC = () => {
                     <div>
                       <p className="font-medium text-white">Email</p>
                       <a
-                        href="mailto:team@neigent8.dev"
+                        href="mailto:bjyotibrat@gmail.com"
                         className="text-blue-600 hover:text-blue-700"
                       >
                         bjyotibrat@gmail.com
@@ -150,7 +150,7 @@ const Contact: React.FC = () => {
               <div className="bg-gray-800 rounded-xl p-6">
                 <h4 className="font-semibold text-white mb-3">Open Source</h4>
                 <p className="text-gray-300 text-sm leading-relaxed">
-                  nEigent8 is open source! Contributions, bug reports, and feature requests are welcome 
+                  nEigent is open source! Contributions, bug reports, and feature requests are welcome 
                   on our GitHub repository.
                 </p>
               </div>
