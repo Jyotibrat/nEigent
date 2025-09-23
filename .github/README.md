@@ -1,10 +1,10 @@
 <div align="center">
 
-# nEigent8
+# nEigent
 
 *AI-Powered Data Leak Prevention Agent - Secure Your Digital Assets*
 
-![last commit](https://img.shields.io/github/last-commit/Jyotibrat/nEigent8?style=flat-square&color=blue) ![TypeScript](https://img.shields.io/badge/TypeScript-95.1%25-blue?style=flat-square) ![JavaScript](https://img.shields.io/badge/JavaScript-4.9%25-yellow?style=flat-square) ![languages](https://img.shields.io/github/languages/count/Jyotibrat/nEigent8?style=flat-square&color=green)
+![last commit](https://img.shields.io/github/last-commit/Jyotibrat/nEigent?style=flat-square&color=blue) ![TypeScript](https://img.shields.io/badge/TypeScript-95.1%25-blue?style=flat-square) ![JavaScript](https://img.shields.io/badge/JavaScript-4.9%25-yellow?style=flat-square) ![languages](https://img.shields.io/github/languages/count/Jyotibrat/nEigent?style=flat-square&color=green)
 
 Built with cutting-edge tools and technologies:
 
@@ -34,7 +34,7 @@ Built with cutting-edge tools and technologies:
 
 ## 🚀 Overview
 
-**nEigent8** is an intelligent Data Leak Prevention (DLP) AI agent designed to protect organizations from sensitive data breaches across multiple platforms. Built for the HackSecure Hackathon, this project leverages n8n workflow automation to continuously monitor and analyze files across Discord, Slack, GitHub, and Google Drive for potential data leaks.
+**nEigent** is an intelligent Data Leak Prevention (DLP) AI agent designed to protect organizations from sensitive data breaches across multiple platforms. Built for the HackSecure Hackathon, this project leverages n8n workflow automation to continuously monitor and analyze files across Discord, Slack, GitHub, and Google Drive for potential data leaks.
 
 ## ✨ Features
 
@@ -76,7 +76,7 @@ In today's digital workspace, sensitive information is scattered across multiple
 
 ## 💡 Solution
 
-nEigent8 provides a proactive, AI-driven approach to data leak prevention:
+nEigent provides a proactive, AI-driven approach to data leak prevention:
 
 🎯 **Centralized Monitoring**: Single dashboard for all your platforms
 🧠 **Intelligent Detection**: AI algorithms trained to identify sensitive data patterns
@@ -123,7 +123,7 @@ nEigent8 provides a proactive, AI-driven approach to data leak prevention:
 
 ## 🚀 Getting Started
 
-Follow these steps to set up nEigent8 on [n8n.io](https://n8n.io/).
+Follow these steps to set up nEigent on [n8n.io](https://n8n.io/).
 
 ### 📋 Prerequisites
 
@@ -134,8 +134,8 @@ Follow these steps to set up nEigent8 on [n8n.io](https://n8n.io/).
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Jyotibrat/nEigent8.git
-   cd nEigent8
+   git clone https://github.com/Jyotibrat/nEigent.git
+   cd nEigent
    ```
    
    or 
@@ -181,7 +181,7 @@ Follow these steps to set up nEigent8 on [n8n.io](https://n8n.io/).
 
 ## 📊 Monitoring Dashboard
 
-The nEigent8 dashboard provides comprehensive visibility into your data security:
+The nEigent dashboard provides comprehensive visibility into your data security:
 
 ### Key Metrics
 - **Total Scans**: Number of files/messages scanned
@@ -197,11 +197,11 @@ The nEigent8 dashboard provides comprehensive visibility into your data security
 
 ## 🎥 Demo
 
-🎬 **Watch the Demo**: [nEigent8 in Action](https://youtu.be/FOyjmtEQIdw?si=hpVkQZF4FN82fby_)
+🎬 **Watch the Demo**: [nEigent in Action](https://youtu.be/FOyjmtEQIdw?si=hpVkQZF4FN82fby_)
 
-🌐 **Official Website**: [n-eigent8.vercel.app](https://n-eigent8.vercel.app/)
+🌐 **Official Website**: [n-eigent.vercel.app](https://n-eigent.vercel.app/)
 
-Experience nEigent8's capabilities through our interactive demo showcasing:
+Experience nEigent's capabilities through our interactive demo showcasing:
 - Real-time threat detection across multiple platforms
 - Dashboard analytics and reporting features  
 - Alert management and response workflows
@@ -234,7 +234,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Project Lead**: [Jyotibrat](https://github.com/Jyotibrat)
 
 Connect with us:
-- 🐙 GitHub: [github.com/Jyotibrat/nEigent8](https://github.com/Jyotibrat/nEigent8)
+- 🐙 GitHub: [github.com/Jyotibrat/nEigent](https://github.com/Jyotibrat/nEigent)
 - 🌐 Website: [n-eigent8.vercel.app](https://n-eigent8.vercel.app/)
 - 🎥 Demo Video: [YouTube](https://youtu.be/FOyjmtEQIdw?si=hpVkQZF4FN82fby_)
 - ✉️ Mail: [bjyotibrat@gmail.com](mailto:bjyotibrat@gmail.com)
@@ -243,7 +243,7 @@ Connect with us:
 
 **HackSecure Hackathon Project**
 
-nEigent8 was developed as part of the HackSecure Hackathon, focusing on innovative cybersecurity solutions. This project demonstrates the power of AI-driven automation in preventing data leaks and securing digital assets across multiple platforms.
+nEigent was developed as part of the HackSecure Hackathon, focusing on innovative cybersecurity solutions. This project demonstrates the power of AI-driven automation in preventing data leaks and securing digital assets across multiple platforms.
 
 ### Hackathon Goals Achieved ✅
 - ✅ Multi-platform data monitoring
@@ -261,6 +261,6 @@ nEigent8 was developed as part of the HackSecure Hackathon, focusing on innovati
 
 *Made for a safer digital world*
 
-[⭐ Star this repository](https://github.com/Jyotibrat/nEigent8) | [🐛 Report Bug](https://github.com/Jyotibrat/nEigent8/issues)
+[⭐ Star this repository](https://github.com/Jyotibrat/nEigent) | [🐛 Report Bug](https://github.com/Jyotibrat/nEigent/issues)
 
 </div>
