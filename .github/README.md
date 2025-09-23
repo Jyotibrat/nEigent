@@ -149,7 +149,7 @@ Follow these steps to set up nEigent on [n8n.io](https://n8n.io/).
 3. **Set up Configurations for the Workflow**
    
 4. **Use these resources for configurations**
-   - Google Config: [Click to View Video](https://youtube.com/shorts/d5I08v-GviE?si=4NVC2UbowBQNgNAP)
+   - Google Config: [Click to View Video](https://youtu.be/RpjJWJmKXeE?si=tAGWSclTHnzp1iHB)
    - Discord Config: [Click to View Video](https://youtu.be/u_NSPbOclqY?si=beoPmMBA2CcKqltz)
    - Slack Config: [Click to View Video](https://youtu.be/xNZUk1Oo30A?si=YkB6u7i4O-Xb5ZYX)
    - GitHub Config: [Click to View Video](https://youtu.be/nOJGkHYpRmI?si=SVQBPGe5qltctxSM)
@@ -209,7 +209,7 @@ Experience nEigent's capabilities through our interactive demo showcasing:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Jyotibrat/nEigent/blob/main/LICENSE) file for details.
 
 ## 👥 Team
 
@@ -234,8 +234,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Project Lead**: [Jyotibrat](https://github.com/Jyotibrat)
 
 Connect with us:
-- 🐙 GitHub: [github.com/Jyotibrat/nEigent](https://github.com/Jyotibrat/nEigent)
-- 🌐 Website: [n-eigent8.vercel.app](https://n-eigent8.vercel.app/)
+- 🐙 GitHub: [github.com/Jyotibrat](https://github.com/Jyotibrat)
+- 🌐 Website: [n-eigent.vercel.app](https://n-eigent.vercel.app/)
 - 🎥 Demo Video: [YouTube](https://youtu.be/FOyjmtEQIdw?si=hpVkQZF4FN82fby_)
 - ✉️ Mail: [bjyotibrat@gmail.com](mailto:bjyotibrat@gmail.com)
 
