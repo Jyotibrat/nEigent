@@ -18,11 +18,24 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setStatus('sending');
 
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact/submit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+
       setTimeout(() => setStatus('idle'), 3000);
     } catch (error) {
       setStatus('error');
